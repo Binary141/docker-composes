@@ -1,0 +1,17 @@
+version: "3"
+services:
+  mc:
+    container_name: mc-caves
+    image: itzg/minecraft-server
+    ports:
+      - 25565:25565
+    environment:
+      EULA: "TRUE"
+      MEMORY: "6G"
+      VERSION: "SNAPSHOT"
+
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    volumes:
+      - /opt/mc-caves/_data:/data

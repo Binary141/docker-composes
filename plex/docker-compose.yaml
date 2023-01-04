@@ -1,0 +1,27 @@
+version: ‘3.7’
+services:
+  plex:
+    image: plexinc/pms-docker
+    restart: always
+    container_name: plex
+    network_mode: "host"
+
+    environment:
+      - HOSTNAME=”Docktor”
+      - TZ="America/Denver"
+      - VERSION=docker
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,video,utility
+
+    volumes:
+      - /opt/plex_docker/database:/config
+      - /opt/plex_docker/transcode:/transcode
+      - /opt/plex_docker/plex-media:/data
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

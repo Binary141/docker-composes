@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  nginx_thingy:
+    container_name: nginx_thingy
+    restart: always
+    image: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/opt/docker_ssl:/etc/nginx/conf.d"
