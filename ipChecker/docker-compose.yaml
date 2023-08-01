@@ -1,0 +1,7 @@
+---
+version: "3.7"
+services:
+  ipchecker:
+    image: ipchecker
+    container_name: ipChecker
+    restart: unless-stopped
