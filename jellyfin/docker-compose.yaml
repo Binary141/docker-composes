@@ -20,11 +20,17 @@ services:
       - 1900:1900/udp #optional
     restart: unless-stopped
 
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+    # For intel IGPU. May need to install newer kernel for 12th and 13th gen cpus
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
 
+    group_add:
+      - "109"
+    # For an nvidia gpu. Make sure to install drivers for GPU
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
